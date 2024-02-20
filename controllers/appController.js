@@ -20,7 +20,7 @@ export async function verifyUser(req, res, next) {
 
 export async function register(req, res) {
   try {
-    const { password, jobTitle, email } = req.body;
+    const { password, jobTitle, email, phoneNumber } = req.body;
     // check for existing email
     const existEmail = new Promise((resolve, reject) => {
       UserModel.findOne({ email })
@@ -43,6 +43,7 @@ export async function register(req, res) {
                 password: hashedPassword,
                 jobTitle: jobTitle || "",
                 email,
+                phoneNumber,
               });
 
               // return save result as a response

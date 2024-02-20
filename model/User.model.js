@@ -11,7 +11,7 @@ export const UserSchema = new mongoose.Schema({
     required: [true, "Please provide a unique email"],
     unique: [true, "Username Exist"],
   },
-  mobile: { type: Number },
+  phoneNumber: { type: String },
   jobTitle: { type: String },
 });
 
