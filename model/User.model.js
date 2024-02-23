@@ -13,6 +13,9 @@ export const UserSchema = new mongoose.Schema({
   },
   phoneNumber: { type: String },
   jobTitle: { type: String },
+  role: { type: String },
+  deposit: { type: Number },
+  total: { type: Number },
 });
 
 export default mongoose.model.Users || mongoose.model("User", UserSchema);

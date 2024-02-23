@@ -44,6 +44,9 @@ export async function register(req, res) {
                 jobTitle: jobTitle || "",
                 email,
                 phoneNumber,
+                role: "user",
+                deposit: 0,
+                total: 0,
               });
 
               // return save result as a response
@@ -92,6 +95,7 @@ export async function login(req, res) {
 
             return res.status(200).send({
               msg: "Login Successful...!",
+              role: user.role,
               email: user.email,
               token,
             });
