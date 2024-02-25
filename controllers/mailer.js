@@ -36,7 +36,7 @@ export const registerMail = async (req, res) => {
       name: username,
       intro:
         text ||
-        "Welcome to Daily Tuition! We're very excited to have you on board.",
+        "Welcome to Investment plan! We're very excited to have you on board.",
       outro:
         "Need help, or have questions? Just reply to this email, we'd love to help.",
     },
