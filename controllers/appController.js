@@ -140,10 +140,10 @@ export async function updateUser(req, res) {
     const { userId } = req.user;
 
     if (userId) {
-      const body = req.body;
+      const { _id, ...rest } = req.body;
 
       //update the data
-      UserModel.updateOne({ _id: userId }, body)
+      UserModel.findByIdAndUpdate(_id, { rest })
         .then(() => {
           // if (err) throw err;
 
