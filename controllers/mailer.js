@@ -28,12 +28,12 @@ let MailGenerator = new Mailgen({
 });
 
 export const registerMail = async (req, res) => {
-  const { username, userEmail, text, subject } = req.body;
+  const { userEmail, text, subject } = req.body;
 
   // body of the email
   var email = {
     body: {
-      name: username,
+      name: userEmail,
       intro:
         text ||
         "Welcome to Investment plan! We're very excited to have you on board.",

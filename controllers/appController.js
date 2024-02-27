@@ -166,6 +166,7 @@ export async function generateOTP(req, res) {
   });
   res.status(201).send({ code: req.app.local.OTP });
 }
+
 export async function verifyOTP(req, res) {
   const { code } = req.query;
   if (parseInt(req.app.local.OTP) === parseInt(code)) {
