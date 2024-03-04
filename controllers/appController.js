@@ -47,6 +47,7 @@ export async function register(req, res) {
                 role: "user",
                 deposit: 0,
                 total: 0,
+                status: "pending",
               });
 
               // return save result as a response
@@ -135,24 +136,25 @@ export async function getUser(req, res) {
   }
 }
 
+export async function getAllUser(req, res) {
+  try {
+    const AllUsers = await UserModel.find();
+    res.send(AllUsers);
+  } catch (error) {
+    return res.status(401).send({ error });
+  }
+}
+
 export async function updateUser(req, res) {
   try {
-    const { userId } = req.user;
+    const { _id, ...rest } = req.body;
 
-    if (userId) {
-      const { _id, ...rest } = req.body;
-
-      //update the data
-      UserModel.findByIdAndUpdate(_id, { rest })
-        .then(() => {
-          // if (err) throw err;
-
-          return res.status(201).send({ msg: "Record updated successfully" });
-        })
-        .catch((error) => res.status(500).send({ error }));
-    } else {
-      return res.status(401).send({ error: "User Not Found...!" });
-    }
+    //update the data
+    UserModel.findByIdAndUpdate(_id, { ...rest })
+      .then(() => {
+        return res.status(201).send({ msg: "Record updated successfully" });
+      })
+      .catch((error) => res.status(500).send({ error }));
   } catch (error) {
     return res.status(401).send({ error });
   }

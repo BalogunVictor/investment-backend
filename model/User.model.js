@@ -16,6 +16,7 @@ export const UserSchema = new mongoose.Schema({
   role: { type: String },
   deposit: { type: Number },
   total: { type: Number },
+  status: { type: String },
 });
 
 export default mongoose.model.Users || mongoose.model("User", UserSchema);
