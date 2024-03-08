@@ -15,7 +15,7 @@ router
 router.route("/login").post(controller.verifyUser, controller.login); //login in app
 
 /** GET Method */
-router.route("/user/:username").get(controller.getUser); //user with username
+router.route("/user/:email").get(controller.getUser); //user with username
 router.route("/").get(controller.getAllUser); //all user
 router.route("/login").post(controller.verifyUser, controller.login); //login in app
 router
