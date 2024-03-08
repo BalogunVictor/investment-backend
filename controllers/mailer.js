@@ -59,5 +59,10 @@ export const registerMail = async (req, res) => {
         .status(200)
         .send({ msg: "You should receive an email from us." });
     })
-    .catch((error) => res.status(500).send({ error }));
+    .catch((error) => {
+      console.error("Error sending email:", error);
+      return res
+        .status(500)
+        .send({ error: "Failed to send email. Please try again later." });
+    });
 };
