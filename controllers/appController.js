@@ -200,7 +200,7 @@ export async function resetPassword(req, res) {
         .then((user) => {
           bcrypt.hash(password, 10).then((hashedPassword) => {
             UserModel.updateOne(
-              { username: user.email },
+              { email: user.email },
               { password: hashedPassword }
             )
               .then(() => {
