@@ -1,5 +1,11 @@
 import mongoose from "mongoose";
 
+const TransactionSchema = new mongoose.Schema({
+  type: String,
+  amount: Number,
+  date: Date,
+});
+
 export const UserSchema = new mongoose.Schema({
   password: {
     type: String,
@@ -17,6 +23,7 @@ export const UserSchema = new mongoose.Schema({
   deposit: { type: Number },
   total: { type: Number },
   status: { type: String },
+  transaction: [TransactionSchema],
 });
 
 export default mongoose.model.Users || mongoose.model("User", UserSchema);

@@ -219,3 +219,31 @@ export async function resetPassword(req, res) {
     return res.status(401).send({ error });
   }
 }
+
+export async function saveTransaction(req, res) {
+  const { _id, type, amount } = req.body;
+
+  try {
+    // Find the user by its ID
+    UserModel.findById({ _id }).then((user) => {
+      user.transaction.push({
+        type,
+        amount,
+        date: new Date(),
+      });
+      // Save the updated transaction
+      user
+        .save()
+        .then(() => {
+          return res
+            .status(200)
+            .send({ msg: "Transaction Updated Successfully" });
+        })
+        .catch(() =>
+          res.status(500).send({ error: "Unable to update Transaction" })
+        );
+    });
+  } catch (error) {
+    return res.status(500).json({ error: "Internal server error" });
+  }
+}
